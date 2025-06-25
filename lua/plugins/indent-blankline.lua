@@ -36,7 +36,7 @@ local rainbow = {
       },
     },
 
- -- 설정 적용
+    -- 설정 적용
     config = function(_, opts)
         -- 1️⃣ 먼저 하이라이트 그룹을 등록
         vim.api.nvim_set_hl(0, "RainbowRed",    { fg = "#E06C75" })
