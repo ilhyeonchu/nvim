@@ -10,7 +10,7 @@ return {
     require("nvim-autopairs").setup({
       check_ts = true,
       fast_wrap = {},
-      disable_filetype = { "text" },
+      disable_filetype = { "TelescopePrompt", "text" },
     })
 
     -- CMP 확정(confirm) 시 자동으로 괄호 닫기
