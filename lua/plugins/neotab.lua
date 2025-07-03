@@ -6,8 +6,15 @@ return {
         backwards_tabkey = "<S-Tab>",       -- 뒤로 탭 아웃
         act_as_tab = true,                  -- 아웃할게 없을 시 일반 Tab
         completion = false,                 -- cmp 활성화시에 neotab 비활성
+        pairs = {
+            { open = "(", close = ")" },
+            { open = "[", close = "]" },
+            { open = "{", close = "}" },
+            { open = "'", close = "'" },
+            { open = '"', close = '"' },
+        }
     },
-    depedencies = {
+    dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "hrsh7th/nvim-cmp",
     },
