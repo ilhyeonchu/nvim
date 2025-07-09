@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {"c", "cpp", "java"},
   callback = function()
     vim.bo.smartindent = true
+    vim.opt_local.formatoptions:remove({ "c", "r", "o"})
   end,
 })
 
