@@ -57,3 +57,6 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope: 도움
 
 -- ===== 기타 유용한 단축키 =====
 -- 예시: vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true, desc = '파일 저장' })
+
+-- 검색 후 하이라이트 제거
+vim.keymap.set('n', '<Esc>', '<Esc>:nohlsearch<CR>', { noremap = true, silent = true, desc = '검색 하이라이트 제거' })
