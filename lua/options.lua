@@ -30,3 +30,19 @@ vim.wo.number = true
 -- vim.wo.relativenumber = true
 vim.opt.scrolloff = 5
 
+-- tmux 설정
+if os.getenv("TMUX") then
+    vim.g.clipboard = {
+        name = 'tmux',
+        copy = {
+            ['+'] = 'tmux load-buffer -',
+            ['*'] = 'tmux load-buffer -',
+        },
+        paste = {
+            ['+'] = 'tmux save-buffer -',
+            ['*'] = 'tmux save-buffer -',
+        },
+        cache_enabled = 1,
+    }
+end
+
