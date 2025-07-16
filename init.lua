@@ -22,12 +22,7 @@ require("lazy").setup("plugins", {})
 require("options")
 require("keymaps")
 
--- Set-up language clients
-require("lsp.ocamllsp")
-require("lsp.lualsp")
-require("lsp.texlsp")
-require("lsp.cclslsp")
-require("lsp.pythonlsp")
+
 
 -- Install NeoVim Plugins
 -- require("lazy").setup("plugins", {})
