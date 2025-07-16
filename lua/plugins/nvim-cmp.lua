@@ -53,8 +53,23 @@ M.config = function()
 		mapping = cmp.mapping.preset.insert({
             -- Tab 기능
             ["<Tab>"] = cmp.mapping(function (fallback)
+                local luasnip = require("luasnip")
                 if cmp.visible() then
                     cmp.confirm({ select = true })
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                else
+                    fallback()
+                end
+            end, { "i", "s" }),
+
+            -- Shift-Tab 기능 (스니펫 이전 점프를 위해 추가)
+            ["<S-Tab>"] = cmp.mapping(function (fallback)
+                local luasnip = require("luasnip")
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
                 else
                     fallback()
                 end
