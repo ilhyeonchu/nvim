@@ -46,3 +46,21 @@ if os.getenv("TMUX") then
     }
 end
 
+
+
+-- 배경 투명화 설정
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "LineNr", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
+  end,
+})
+
+-- 초기 로드 시에도 한 번 실행
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
