@@ -1,3 +1,4 @@
+-- nvim-cmp: 자동완성 엔진 플러그인
 local M = {
 	"hrsh7th/nvim-cmp",
 	dependencies = {

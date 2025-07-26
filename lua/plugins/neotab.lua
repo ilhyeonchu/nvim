@@ -1,3 +1,4 @@
+-- neotab: Tab 키를 사용하여 괄호나 따옴표 밖으로 빠져나갈 수 있게 해주는 플러그인
 return {
     "kawre/neotab.nvim",                    -- Tab-out 플러그인
     event = "InsertEnter",

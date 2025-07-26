@@ -1,3 +1,4 @@
+-- noice: Neovim의 UI를 개선하여 메시지, 명령어, 팝업 메뉴 등을 더 보기 좋게 만들어주는 플러그인
 return {
   "folke/noice.nvim",
   event = "VeryLazy",

@@ -61,6 +61,19 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
+-- 주석 색상 변경
+-- 하이라이트 오버라이드를 위한 autocmd 그룹 생성
+local highlight_group = vim.api.nvim_create_augroup("CustomHighlightOverrides", { clear = true })
+
+-- ColorScheme 이벤트 발생 시 실행될 autocmd 생성
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = highlight_group,
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "Comment", { fg = "#8a81a3", italic = true })
+    end,
+})
+
 -- 초기 로드 시에도 한 번 실행
 vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })

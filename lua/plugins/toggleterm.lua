@@ -1,3 +1,4 @@
+-- toggleterm: Neovim 내에서 터미널을 열고 관리하는 플러그인
 return {
   'akinsho/toggleterm.nvim',  -- 플러그인 repository
   version = "*",  -- 버전
@@ -19,4 +20,3 @@ return {
   end,
   lazy = false,
 }
-

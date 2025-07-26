@@ -1,3 +1,4 @@
+-- luasnip: 코드 스니펫(자주 사용하는 코드 조각)을 관리하고 사용하는 플러그인
 return {
 	"L3MON4D3/LuaSnip",
 	-- follow latest release.

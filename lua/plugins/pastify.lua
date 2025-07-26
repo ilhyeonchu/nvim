@@ -1,3 +1,4 @@
+-- pastify: 클립보드의 이미지를 붙여넣고 저장하는 플러그인
 return {
   'TobinPalmer/pastify.nvim',
   cmd = { 'Pastify' },

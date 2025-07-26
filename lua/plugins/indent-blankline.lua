@@ -1,3 +1,4 @@
+-- indent-blankline: 들여쓰기 라인을 시각적으로 표시해주는 플러그인
 -- 하이라이트 그룹 이름 정의
 local rainbow = {
   "RainbowRed",

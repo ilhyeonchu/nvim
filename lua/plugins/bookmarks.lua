@@ -1,3 +1,4 @@
+-- bookmarks: 코드에 북마크를 추가하고 관리하는 플러그인
 return {
   'tomasky/bookmarks.nvim',
   -- after = "telescope.nvim",

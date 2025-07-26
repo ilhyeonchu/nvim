@@ -1,3 +1,4 @@
+-- treesitter: 코드 구문 분석을 통해 더 정확한 하이라이팅, 들여쓰기 등을 제공하는 플러그인
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",

@@ -1,3 +1,4 @@
+-- barbar: 버퍼(열린 파일) 목록을 탭 형태로 보여주는 플러그인
 return {
   'romgrk/barbar.nvim',
   dependencies = {

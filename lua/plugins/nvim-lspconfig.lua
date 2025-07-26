@@ -1,3 +1,4 @@
+-- nvim-lspconfig: Neovim의 내장 LSP 클라이언트를 설정하는 플러그인
 return {
   "neovim/nvim-lspconfig",
   dependencies = {

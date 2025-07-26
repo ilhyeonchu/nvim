@@ -1,3 +1,4 @@
+-- gen: Ollama와 같은 로컬 LLM을 사용하여 코드 생성을 도와주는 플러그인
 return {
     "David-Kunz/gen.nvim",
     opts = {

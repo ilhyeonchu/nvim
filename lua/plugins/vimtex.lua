@@ -1,3 +1,4 @@
+-- vimtex: LaTeX 문서를 편집하고 컴파일하는 플러그인
 return {
   "lervag/vimtex",
   lazy = false,     -- we don't want to lazy load VimTeX

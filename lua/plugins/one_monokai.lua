@@ -1,3 +1,4 @@
+-- one_monokai: Monokai 테마를 Neovim에 적용하는 플러그인
 return {
     "cpea2506/one_monokai.nvim",
     dependencies = {

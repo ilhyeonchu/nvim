@@ -1,3 +1,4 @@
+-- autopairs: 괄호, 따옴표 등 쌍을 자동으로 완성해주는 플러그인
 return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -33,4 +34,3 @@ return {
             })
         end,
 }
-
