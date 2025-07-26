@@ -38,3 +38,30 @@ require("lualine").setup({
     },
   },
 })
+
+-- 몇몇 색상 변경  (모든 플러그인 로드 후 적용)
+vim.opt.cursorline = true
+local highlight_group = vim.api.nvim_create_augroup("CustomHighlightOverrides", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = highlight_group,
+    pattern = "*",
+    callback = function()
+        -- 주석 색 변경
+        vim.api.nvim_set_hl(0, "Comment", { fg = "#ffff00", italic = true })
+
+        -- 라인 넘버 변경
+        vim.api.nvim_set_hl(0, "LineNr", { fg = "#a89984", bold = true})
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#458588", bold = true})
+        -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#f2f2f2" })
+    end,
+})
+
+-- Neovim 시작 시에도 적용되도록 즉시 실행
+-- 참고: colorscheme이 로드되면서 이 콜백이 다시 호출될 수 있지만,
+-- autocmd 그룹의 clear=true 옵션 덕분에 중복 실행 문제는 없습니다.
+pcall(function ()
+    vim.api.nvim_set_hl( 0, "Comment", { fg = "#ffff00", italic = true })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#a89984", bold = true })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#458588", bold = true})
+    -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#f2f2f2" })
+end)

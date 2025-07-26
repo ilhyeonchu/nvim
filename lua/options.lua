@@ -26,8 +26,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- 줄 번호 표시 등 추가 옵션 (init_numbering.lua 참고)
-vim.wo.number = true
--- vim.wo.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
 
 -- tmux 설정
@@ -59,19 +59,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "LineNr", { bg = "NONE" })
     vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
   end,
-})
-
--- 주석 색상 변경
--- 하이라이트 오버라이드를 위한 autocmd 그룹 생성
-local highlight_group = vim.api.nvim_create_augroup("CustomHighlightOverrides", { clear = true })
-
--- ColorScheme 이벤트 발생 시 실행될 autocmd 생성
-vim.api.nvim_create_autocmd("ColorScheme", {
-    group = highlight_group,
-    pattern = "*",
-    callback = function()
-        vim.api.nvim_set_hl(0, "Comment", { fg = "#8a81a3", italic = true })
-    end,
 })
 
 -- 초기 로드 시에도 한 번 실행
