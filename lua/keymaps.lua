@@ -6,8 +6,8 @@
   - 중복된 키 매핑이 있는 경우 주의
 --]]
 
--- ===== nvim-tree =====
-vim.keymap.set('n', '<leader>fo', '<Cmd>NvimTreeToggle<CR>', { noremap = true, silent = true, desc = 'NvimTree: 토글' })
+-- ===== neo-tree =====
+vim.keymap.set('n', '<leader>fo', '<Cmd>Neotree toggle<CR>', { noremap = true, silent = true, desc = 'Neotree: 토글' })
 
 -- ===== harpoon =====
 local harpoon = require('harpoon')
