@@ -15,12 +15,12 @@ return {
       },
     })
   end,
-  init = function()
-    vim.api.nvim_create_autocmd("VimEnter", {
-      group = vim.api.nvim_create_augroup("neotree_on_startup", { clear = true }),
-      callback = function()
-        vim.cmd("Neotree")
-      end,
-    })
-  end,
+--  init = function()
+--    vim.api.nvim_create_autocmd("VimEnter", {
+--      group = vim.api.nvim_create_augroup("neotree_on_startup", { clear = true }),
+--      callback = function()
+--        vim.cmd("Neotree")
+--      end,
+--    })
+--  end,
 }
