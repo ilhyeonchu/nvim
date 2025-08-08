@@ -28,15 +28,15 @@ vim.api.nvim_set_keymap('n', '<C-\\>', ':ToggleTerm<CR>', { noremap = true, sile
 -- ===== bookmarks =====
 local bm = require('bookmarks')
 local function setup_bookmarks()
-  bm.setup {
-    save_file = vim.fn.expand("$HOME/.bookmarks"),
-    keywords = {
-      ["@t"] = "☑️ ",  -- Todo
-      ["@w"] = "⚠️ ",  -- Warn
-      ["@f"] = "⛏ ",  -- Fix
-      ["@n"] = " ",  -- Note
-    },
-  }
+    bm.setup {
+        save_file = vim.fn.expand("$HOME/.bookmarks"),
+        keywords = {
+            ["@t"] = "☑️ ", -- Todo
+            ["@w"] = "⚠️ ", -- Warn
+            ["@f"] = "⛏ ", -- Fix
+            ["@n"] = " ", -- Note
+        },
+    }
 end
 
 setup_bookmarks()
@@ -60,3 +60,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope: 도움
 
 -- 검색 후 하이라이트 제거
 vim.keymap.set('n', '<Esc>', '<Esc>:nohlsearch<CR>', { noremap = true, silent = true, desc = '검색 하이라이트 제거' })
+
+-- 모든 파일 저장 및 종료 / 모든 파일 저장
+vim.keymap.set('n', '<leader>wqa', '<cmd>wqa<CR>', { noremap = true, silent = true, desc = '모든 파일 저장 및 종료' })
+vim.keymap.set('n', '<leader>wa', '<cmd>wa<CR>', { noremap = true, silent = true, desc = '모든 파일 저장' })
