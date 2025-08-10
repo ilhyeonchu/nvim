@@ -12,7 +12,7 @@ vim.keymap.set('n', '<leader>fo', '<Cmd>Neotree toggle<CR>', { noremap = true, s
 -- ===== harpoon =====
 local harpoon = require('harpoon')
 harpoon:setup()
-vim.keymap.set('n', '<leader>a', function() harpoon:list():add() end, { desc = 'Harpoon: 파일 추가' })
+vim.keymap.set('n', '<leader>aa', function() harpoon:list():add() end, { desc = 'Harpoon: 파일 추가' })
 vim.keymap.set('n', '<C-e>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Harpoon: 퀵 메뉴' })
 vim.keymap.set('n', '<C-h>', function() harpoon:list():select(1) end, { desc = 'Harpoon: 1번 파일로 이동' })
 vim.keymap.set('n', '<C-t>', function() harpoon:list():select(2) end, { desc = 'Harpoon: 2번 파일로 이동' })
