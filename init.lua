@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.api.nvim_set_hl(0, "LineNr", { fg = "#a89984", bold = true })
         vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#458588", bold = true })
         vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3836" })
-        vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
+        -- vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
     end,
 })
 
@@ -55,5 +55,5 @@ pcall(function()
     vim.api.nvim_set_hl(0, "LineNr", { fg = "#a89984", bold = true })
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#458588", bold = true })
     vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3836" })
-    vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
+    -- vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
 end)
