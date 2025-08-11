@@ -36,7 +36,7 @@ return {
 
         -- LSP 진단/정의 등 내비게이션 시미볼 동기화
         vim.api.nvim_create_autocmd("FileType", {
-            pattern = { "lua", "python", "cpp", "c", "javascript", "typescript", "rust", "go" },
+            pattern = { "lua", "python", "cpp", "c", "javascript", "typescript", "rust", "go", "json" },
             callback = function()
                 if not require("aerial").is_open() then
                     aerial.open({ focus = false })
