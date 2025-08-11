@@ -50,3 +50,4 @@ vim.keymap.set('n', '<Esc>', '<Esc>:nohlsearch<CR>', { noremap = true, silent = 
 -- 모든 파일 저장 및 종료 / 모든 파일 저장
 vim.keymap.set('n', '<leader>wqa', '<cmd>wqa<CR>', { noremap = true, silent = true, desc = '모든 파일 저장 및 종료' })
 vim.keymap.set('n', '<leader>wa', '<cmd>wa<CR>', { noremap = true, silent = true, desc = '모든 파일 저장' })
+vim.keymaps.set('n', '<leader>qq', '<cmd>qa!<CR>', { noremap = true, silent = true, desc = '모든 파일 강제 종료' })
