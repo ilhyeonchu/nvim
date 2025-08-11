@@ -23,6 +23,10 @@ return {
     end
 
     require("lualine").setup({
+      options = {
+        theme = "one_monokai",
+        globalstatus = true,
+      },
       sections = {
         lualine_x = {
           {
@@ -31,8 +35,23 @@ return {
             color = { fg = "#ff9e64" },
           },
         },
+        lualine_c = {
+          { "filename" },
+          {
+            function()
+              local ok, aerial = pcall(require, "aerial")
+              if ok then
+                return aerial.get_location()
+              end
+              return ""
+            end,
+            cond = function()
+              local ok, aerial = pcall(require, "aerial")
+              return ok and aerial.is_available()
+            end,
+          },
+        },
       },
     })
   end,
 }
-

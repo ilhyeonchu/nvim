@@ -54,18 +54,6 @@ return {
         --     desc = "Auto-open Aerial on LspAttach without stealing focus",
         -- })
 
-        -- (옵션) lualine 연동: 현재 심볼 경로 표시
-        local ok, lualine = pcall(require, "lualine")
-        if ok then
-            local aerial = require("aerial")
-            lualine.setup({
-                sections = {
-                    lualine_c = {
-                        { "filename" },
-                        { aerial.get_location, cond = aerial.is_available },
-                    },
-                },
-            })
-        end
+        -- lualine 연동은 중앙 설정(lua/plugins/lualine.lua)에서 처리
     end,
 }
