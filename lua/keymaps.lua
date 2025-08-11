@@ -9,9 +9,8 @@
 -- ===== neo-tree =====
 vim.keymap.set('n', '<leader>fo', '<Cmd>Neotree toggle<CR>', { noremap = true, silent = true, desc = 'Neotree: 토글' })
 
--- ===== harpoon =====
+-- 플러그인 초기화는 lua/plugins/harpoon.lua에서 수행
 local harpoon = require('harpoon')
-harpoon:setup()
 vim.keymap.set('n', '<leader>aa', function() harpoon:list():add() end, { desc = 'Harpoon: 파일 추가' })
 vim.keymap.set('n', '<C-e>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Harpoon: 퀵 메뉴' })
 vim.keymap.set('n', '<C-h>', function() harpoon:list():select(1) end, { desc = 'Harpoon: 1번 파일로 이동' })
@@ -25,21 +24,8 @@ vim.keymap.set('n', '<C-S-N>', function() harpoon:list():next() end, { desc = 'H
 vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-\\>', ':ToggleTerm<CR>', { noremap = true, silent = true })
 
--- ===== bookmarks =====
+-- 플러그인 초기화는 lua/plugins/bookmarks.lua에서 수행
 local bm = require('bookmarks')
-local function setup_bookmarks()
-    bm.setup {
-        save_file = vim.fn.expand("$HOME/.bookmarks"),
-        keywords = {
-            ["@t"] = "☑️ ", -- Todo
-            ["@w"] = "⚠️ ", -- Warn
-            ["@f"] = "⛏ ", -- Fix
-            ["@n"] = " ", -- Note
-        },
-    }
-end
-
-setup_bookmarks()
 
 vim.keymap.set('n', 'mm', bm.bookmark_toggle, { desc = 'Bookmark: 토글' })
 vim.keymap.set('n', 'mi', bm.bookmark_ann, { desc = 'Bookmark: 주석 추가/편집' })

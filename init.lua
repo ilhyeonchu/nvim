@@ -27,17 +27,7 @@ require("keymaps")
 -- Install NeoVim Plugins
 -- require("lazy").setup("plugins", {})
 
-require("lualine").setup({
-	sections = {
-		lualine_x = {
-			{
-				require("noice").api.statusline.mode.get,
-				cond = require("noice").api.statusline.mode.has,
-				color = { fg = "#ff9e64" },
-			}
-		},
-	},
-})
+-- lualine 설정은 plugins/lualine.lua로 이동
 
 -- 몇몇 색상 변경  (모든 플러그인 로드 후 적용)
 vim.opt.cursorline = true
