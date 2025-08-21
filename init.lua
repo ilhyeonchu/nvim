@@ -21,6 +21,7 @@ require("lazy").setup("plugins", {})
 -- Set-up the basic configurations
 require("options")
 require("keymaps")
+require("filetypes")
 
 
 
