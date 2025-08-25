@@ -1,7 +1,7 @@
 -- Neovim 전역 옵션 설정 (PEP 8 스타일 주석)
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.bo.softtabstop = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.bo.softtabstop = 2
 vim.opt.expandtab = true
 
 vim.opt.autoindent = true
@@ -10,18 +10,18 @@ vim.opt.cindent = false
 
 -- C,C++,Go,Java 등 C 계열 파일만 smartindent 활성화
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"c", "cpp", "java", "go"},
+    pattern = { "c", "cpp", "java", "go" },
     callback = function()
         vim.bo.smartindent = true
-        vim.opt_local.formatoptions:remove({ "c", "r", "o"})
+        vim.opt_local.formatoptions:remove({ "c", "r", "o" })
     end,
 })
 -- 파이썬 등 smartindent 비활성화
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"python", "lua", "julia"},
+    pattern = { "python", "lua", "julia" },
     callback = function()
         vim.bo.smartindent = false
-        vim.opt_local.formatoptions:remove({"c", "r", "o"})
+        vim.opt_local.formatoptions:remove({ "c", "r", "o" })
     end,
 })
 
@@ -50,15 +50,15 @@ end
 
 -- 배경 투명화 설정
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "LineNr", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
-  end,
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+        vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
+        vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
+        vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
+        vim.api.nvim_set_hl(0, "LineNr", { bg = "NONE" })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
+    end,
 })
 
 -- 초기 로드 시에도 한 번 실행
