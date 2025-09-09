@@ -16,7 +16,7 @@ return {
       css = { { "prettierd", "prettier" } },
       json = { { "prettierd", "prettier" } },
       go = { { "goimports", "gofumpt", "gofmt" } },
-      java = { "google-java-format" },
+      -- java: google-java-format는 2스페이스 고정이므로 제외 (LSP fallback 사용)
       cs = { "csharpier" },
       c = { "clang_format" },
       cpp = { "clang_format" },

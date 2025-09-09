@@ -34,6 +34,25 @@ else
   })
 end
 
+-- SmartIndent and formatoptions by filetype
+-- C/C++/Go/Java: enable smartindent, and remove c/r/o from formatoptions
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp", "java", "go" },
+  callback = function()
+    vim.bo.smartindent = true
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
+
+-- Python/Lua/Julia: disable smartindent, also prune c/r/o
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python", "lua", "julia" },
+  callback = function()
+    vim.bo.smartindent = false
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
+
 -- Makefile: 탭 문자 필수. 기본 탭 폭은 8, 스페이스 확장 금지.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "make",
@@ -86,5 +105,40 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.tabstop = 2
     vim.opt_local.shiftwidth = 2
     vim.opt_local.softtabstop = 2
+  end,
+})
+
+-- Python: 4 스페이스 (PEP8 권장)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python" },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
+
+-- JavaScript/TypeScript: 2 스페이스 관용
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact", "jsx", "tsx" },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
+
+-- HTML/CSS: 2 스페이스 관용
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "html", "css", "scss", "less" },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
   end,
 })
