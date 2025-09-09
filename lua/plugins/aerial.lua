@@ -28,25 +28,7 @@ return {
 			require("telescope").load_extension("aerial")
 		end)
 
-		-- LSP 진단/정의 등 내비게이션 시미볼 동기화
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "lua", "python", "cpp", "c", "javascript", "typescript", "rust", "go", "json" },
-			callback = function()
-				if not require("aerial").is_open() then
-					aerial.open({ focus = false })
-				end
-			end,
-		})
-
-		-- -- 자동 오픈
-		-- vim.api,nvim_create_autocmd("LspAttach", {
-		--     callback = function ()
-		--         if not aerial.is_open() then
-		--             aerial.open({ focus = false })
-		--         end
-		--     end,
-		--     desc = "Auto-open Aerial on LspAttach without stealing focus",
-		-- })
+        -- 자동 오픈 관련 동작 제거: 사용자가 원할 때만 열도록 유지
 
 		-- lualine 연동은 중앙 설정(lua/plugins/lualine.lua)에서 처리
 	end,
