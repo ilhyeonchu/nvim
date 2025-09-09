@@ -9,6 +9,14 @@ return {
       python = { "isort", "black" },
       javascript = { { "prettierd", "prettier" } },
       typescript = { { "prettierd", "prettier" } },
+      javascriptreact = { { "prettierd", "prettier" } },
+      typescriptreact = { { "prettierd", "prettier" } },
+      html = { { "prettierd", "prettier" } },
+      css = { { "prettierd", "prettier" } },
+      json = { { "prettierd", "prettier" } },
+      go = { { "goimports", "gofumpt", "gofmt" } },
+      java = { "google-java-format" },
+      cs = { "csharpier" },
       -- 다른 언어에 대한 포맷터 추가 가능
     },
     format_on_save = {

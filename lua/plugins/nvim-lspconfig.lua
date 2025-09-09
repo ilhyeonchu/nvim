@@ -14,13 +14,22 @@ return {
     local servers = require("mason-lspconfig").get_installed_servers()
 
     for _, server_name in ipairs(servers) do
-      local opts = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-      }
-      -- 각 서버별 커스텀 설정이 있다면 여기서 적용할 수 있습니다.
-      -- 예: if server_name == "lualsp" then ... end
-      require("lspconfig")[server_name].setup(opts)
+      -- jdtls(Java)는 전용 플러그인(nvim-jdtls)으로 ftplugin에서 구동하므로 여기선 스킵
+      if server_name ~= "jdtls" then
+        local opts = {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
+        -- 서버별 미세 조정 가능
+        -- if server_name == "tsserver" then
+        --   opts.on_attach = function(client, bufnr)
+        --     -- 포맷 충돌을 줄이고 싶다면 tsserver 포맷 비활성화
+        --     client.server_capabilities.documentFormattingProvider = false
+        --     on_attach(client, bufnr)
+        --   end
+        -- end
+        require("lspconfig")[server_name].setup(opts)
+      end
     end
   end,
 }
