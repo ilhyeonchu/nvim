@@ -10,9 +10,12 @@ return {
       "black",
       "prettierd",
       "prettier",
+      "eslint_d",
       "gofumpt",
       "goimports",
       "google-java-format",
+      "clang-format",
+      "cmakelang",
     }
 
     -- dotnet이 있을 때만 csharpier 설치 시도

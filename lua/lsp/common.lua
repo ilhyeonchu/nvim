@@ -20,6 +20,17 @@ M.on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, opts)
+
+  -- Inlay hints 자동 활성화 (Neovim 0.9/0.10 호환)
+  local ih = vim.lsp.inlay_hint
+  local ok = ih ~= nil
+  if ok then
+    if type(ih) == "function" then
+      pcall(ih, bufnr, true)
+    elseif type(ih) == "table" and type(ih.enable) == "function" then
+      pcall(ih.enable, true, { bufnr = bufnr })
+    end
+  end
 end
 
 -- LSP capabilities 향상

@@ -22,6 +22,7 @@ require("lazy").setup("plugins", {})
 require("options")
 require("keymaps")
 require("filetypes")
+require("lsp.clang_helpers")
 
 
 

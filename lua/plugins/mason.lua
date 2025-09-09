@@ -19,6 +19,8 @@ return {
         "cssls",       -- CSS
         "emmet_language_server", -- Emmet
         "eslint",      -- ESLint (JS/TS)
+        "autotools_ls", -- Makefile/Autotools
+        "cmake",      -- CMake
       },
       automatic_installation = true,
     })

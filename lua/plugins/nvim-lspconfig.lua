@@ -13,23 +13,46 @@ return {
 
     local servers = require("mason-lspconfig").get_installed_servers()
 
+    -- lsp.servers.<name> 모듈이 있으면 그 옵션을 병합해서 사용
+    local function get_custom_opts(server)
+      local ok, mod = pcall(require, "lsp.servers." .. server)
+      if not ok then
+        return {}
+      end
+      if type(mod) == "function" then
+        return mod() or {}
+      end
+      return mod or {}
+    end
+
+    -- ccls 바이너리가 있으면 ccls를 선호하고 clangd는 스킵
+    local prefer_ccls = (vim.fn.executable("ccls") == 1)
+
+    -- mason이 설치한 서버 목록에서 prefer_ccls일 때 clangd는 제외
+    if prefer_ccls then
+      local filtered = {}
+      for _, s in ipairs(servers) do
+        if s ~= "clangd" then table.insert(filtered, s) end
+      end
+      servers = filtered
+    end
+
     for _, server_name in ipairs(servers) do
       -- jdtls(Java)는 전용 플러그인(nvim-jdtls)으로 ftplugin에서 구동하므로 여기선 스킵
       if server_name ~= "jdtls" then
-        local opts = {
-          on_attach = on_attach,
-          capabilities = capabilities,
-        }
-        -- 서버별 미세 조정 가능
-        -- if server_name == "tsserver" then
-        --   opts.on_attach = function(client, bufnr)
-        --     -- 포맷 충돌을 줄이고 싶다면 tsserver 포맷 비활성화
-        --     client.server_capabilities.documentFormattingProvider = false
-        --     on_attach(client, bufnr)
-        --   end
-        -- end
+        local base = { on_attach = on_attach, capabilities = capabilities }
+        local custom = get_custom_opts(server_name)
+        local opts = vim.tbl_deep_extend("force", base, custom)
         require("lspconfig")[server_name].setup(opts)
       end
+    end
+
+    -- 시스템에 ccls가 있으면 mason 설치 여부와 관계없이 최종적으로 ccls를 설정
+    if prefer_ccls then
+      local base = { on_attach = on_attach, capabilities = capabilities }
+      local custom = get_custom_opts("ccls")
+      local opts = vim.tbl_deep_extend("force", base, custom)
+      require("lspconfig").ccls.setup(opts)
     end
   end,
 }
