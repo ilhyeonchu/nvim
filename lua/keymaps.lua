@@ -181,6 +181,42 @@ vim.keymap.set("n", "<leader>du", function()
 	end
 end, { desc = "DAP: UI 토글" })
 
+-- ===== Git =====
+vim.keymap.set("n", "<leader>gg", function()
+	local ok, neogit = pcall(require, "neogit")
+	if ok then
+		neogit.open()
+	end
+end, { desc = "Git: Neogit 상태" })
+
+vim.keymap.set("n", "<leader>gC", function()
+	local ok, neogit = pcall(require, "neogit")
+	if ok then
+		neogit.open({ "commit" })
+	end
+end, { desc = "Git: Neogit 커밋" })
+
+vim.keymap.set("n", "<leader>gdo", function()
+	local ok, diffview = pcall(require, "diffview")
+	if ok then
+		diffview.open()
+	end
+end, { desc = "Git: Diffview 열기" })
+
+vim.keymap.set("n", "<leader>gdf", function()
+	local ok, diffview = pcall(require, "diffview")
+	if ok then
+		diffview.file_history()
+	end
+end, { desc = "Git: Diffview 파일 히스토리" })
+
+vim.keymap.set("n", "<leader>gdc", function()
+	local ok, diffview = pcall(require, "diffview")
+	if ok then
+		diffview.close()
+	end
+end, { desc = "Git: Diffview 닫기" })
+
 -- ===== 기타 유용한 단축키 =====
 -- 예시: vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true, desc = '파일 저장' })
 
