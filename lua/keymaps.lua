@@ -120,6 +120,67 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope: 텍스
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope: 버퍼 목록" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope: 도움말 태그" })
 
+-- ===== nvim-dap =====
+local function dap_call(method)
+	return function()
+		local ok, dap = pcall(require, "dap")
+		if ok and dap[method] then
+			dap[method]()
+		end
+	end
+end
+
+vim.keymap.set("n", "<leader>db", function()
+	local ok, dap = pcall(require, "dap")
+	if ok then
+		dap.toggle_breakpoint()
+	end
+end, { desc = "DAP: 중단점 토글" })
+
+vim.keymap.set("n", "<leader>dB", function()
+	local ok, dap = pcall(require, "dap")
+	if not ok then
+		return
+	end
+	local cond = vim.fn.input("중단점 조건 > ")
+	if cond ~= "" then
+		dap.set_breakpoint(cond)
+	end
+end, { desc = "DAP: 조건 중단점" })
+
+vim.keymap.set("n", "<leader>dl", function()
+	local ok, dap = pcall(require, "dap")
+	if not ok then
+		return
+	end
+	local msg = vim.fn.input("로그 메시지 > ")
+	if msg ~= "" then
+		dap.set_breakpoint(nil, nil, msg)
+	end
+end, { desc = "DAP: 로그 포인트" })
+
+vim.keymap.set("n", "<leader>dc", dap_call("continue"), { desc = "DAP: 실행/계속" })
+vim.keymap.set("n", "<leader>dn", dap_call("step_over"), { desc = "DAP: 다음 줄" })
+vim.keymap.set("n", "<leader>di", dap_call("step_into"), { desc = "DAP: 안으로" })
+vim.keymap.set("n", "<leader>do", dap_call("step_out"), { desc = "DAP: 밖으로" })
+vim.keymap.set("n", "<leader>dr", dap_call("run_to_cursor"), { desc = "DAP: 커서까지 실행" })
+vim.keymap.set("n", "<leader>ds", dap_call("run_last"), { desc = "DAP: 마지막 구성" })
+vim.keymap.set("n", "<leader>dq", dap_call("terminate"), { desc = "DAP: 세션 종료" })
+
+vim.keymap.set({ "n", "v" }, "<leader>de", function()
+	local ok, dapui = pcall(require, "dapui")
+	if ok then
+		dapui.eval()
+	end
+end, { desc = "DAP: 값 평가" })
+
+vim.keymap.set("n", "<leader>du", function()
+	local ok, dapui = pcall(require, "dapui")
+	if ok then
+		dapui.toggle({ reset = true })
+	end
+end, { desc = "DAP: UI 토글" })
+
 -- ===== 기타 유용한 단축키 =====
 -- 예시: vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true, desc = '파일 저장' })
 
