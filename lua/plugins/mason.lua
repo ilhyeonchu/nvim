@@ -21,6 +21,9 @@ return {
         "eslint",      -- ESLint (JS/TS)
         "autotools_ls", -- Makefile/Autotools
         "cmake",      -- CMake
+        -- Docker
+        "dockerls",
+        "docker_compose_language_service",
       },
       automatic_installation = true,
       automatic_enable = false,

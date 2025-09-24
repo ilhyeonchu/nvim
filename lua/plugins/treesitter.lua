@@ -12,7 +12,7 @@ return {
             "javascript", "typescript", "tsx",
             "html", "css",
             "go", "java", "c_sharp",
-            "make", "cmake",
+            "make", "cmake", "dockerfile",
             "ocaml", "latex", "markdown", "yaml"
           },
           sync_install = false,
