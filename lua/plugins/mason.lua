@@ -23,6 +23,7 @@ return {
         "cmake",      -- CMake
       },
       automatic_installation = true,
+      automatic_enable = false,
     })
   end,
 }

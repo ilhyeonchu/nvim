@@ -12,6 +12,12 @@ return {
     local on_attach = require("lsp.common").on_attach
 
     local servers = require("mason-lspconfig").get_installed_servers()
+    local function configure(name, overrides)
+      local base = { on_attach = on_attach, capabilities = capabilities }
+      local opts = vim.tbl_deep_extend("force", base, overrides or {})
+      vim.lsp.config(name, opts)
+      vim.lsp.enable(name)
+    end
 
     -- lsp.servers.<name> 모듈이 있으면 그 옵션을 병합해서 사용
     local function get_custom_opts(server)
@@ -40,19 +46,15 @@ return {
     for _, server_name in ipairs(servers) do
       -- jdtls(Java)는 전용 플러그인(nvim-jdtls)으로 ftplugin에서 구동하므로 여기선 스킵
       if server_name ~= "jdtls" then
-        local base = { on_attach = on_attach, capabilities = capabilities }
         local custom = get_custom_opts(server_name)
-        local opts = vim.tbl_deep_extend("force", base, custom)
-        require("lspconfig")[server_name].setup(opts)
+        configure(server_name, custom)
       end
     end
 
     -- 시스템에 ccls가 있으면 mason 설치 여부와 관계없이 최종적으로 ccls를 설정
     if prefer_ccls then
-      local base = { on_attach = on_attach, capabilities = capabilities }
-      local custom = get_custom_opts("ccls")
-      local opts = vim.tbl_deep_extend("force", base, custom)
-      require("lspconfig").ccls.setup(opts)
+      configure("ccls", get_custom_opts("ccls"))
+      vim.lsp.enable("clangd", false)
     end
   end,
 }

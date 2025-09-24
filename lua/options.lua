@@ -13,22 +13,10 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
 
--- tmux 설정
-if os.getenv("TMUX") then
-    vim.g.clipboard = {
-        name = 'tmux',
-        copy = {
-            ['+'] = 'tmux load-buffer -',
-            ['*'] = 'tmux load-buffer -',
-        },
-        paste = {
-            ['+'] = 'tmux save-buffer -',
-            ['*'] = 'tmux save-buffer -',
-        },
-        cache_enabled = 1,
-    }
+local is_remote = vim.env.SSH_TTY or vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT
+if not is_remote then
+    vim.opt.clipboard = "unnamedplus"
 end
-
 
 
 -- 배경 투명화 설정
