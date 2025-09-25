@@ -6,8 +6,12 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("mkdnflow").setup({
-        -- 기본 설정만으로 표/목록/링크 보조 기능을 제공
         filetypes = { md = true, markdown = true, rmarkdown = true },
+        mappings = {
+          -- which-key 그룹을 피하기 위해 접기/펼치기를 <leader>mf/<leader>mF로 재매핑
+          MkdnFoldSection = { 'n', '<leader>mf' },
+          MkdnUnfoldSection = { 'n', '<leader>mF' },
+        },
       })
     end,
   },
