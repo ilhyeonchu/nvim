@@ -29,7 +29,7 @@ Neovim 설정에 포함된 Git 관련 플러그인(`gitsigns.nvim`, `neogit`, `d
 ▶ **열기 직전 상태로 복귀하려면** `:DiffviewClose` (또는 `<leader>gdc`)를 실행하세요. Diffview가 열릴 때 기존 창 정보를 저장했다가 닫을 때 복원하므로 추가 조작 없이 원래 편집 레이아웃으로 되돌아갑니다.
 
 ## 3. 실전 워크플로 예시
-1. `<leader>gg`로 Neogit 상태 창을 열어 변경 사항 개요 확인.
+1. `<leader>gg`로 Neogit 상태 창을 열어 변경 사항 개요 확인. 
 2. 필요하면 `s`로 hunk stage, `cc`로 커밋 버퍼 작성.
 3. 커밋 전에 전체 변경을 보고 싶으면 `<leader>gdo`로 Diffview 열기 → 변경 내용 검토.
 4. 확인 후 `<leader>gdc`로 Diffview 닫기 → 다시 Neovim 편집 레이아웃으로 복귀.
