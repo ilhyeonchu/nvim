@@ -220,6 +220,8 @@ end, { desc = "Git: Diffview 닫기" })
 -- ===== 기타 유용한 단축키 =====
 -- 예시: vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true, desc = '파일 저장' })
 
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "LSP: 진단 상세" })
+
 -- 검색 후 하이라이트 제거
 vim.keymap.set(
 	"n",
