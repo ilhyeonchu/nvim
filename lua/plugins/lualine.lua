@@ -54,7 +54,7 @@ return {
 
     require("lualine").setup({
       options = {
-        theme = "one_monokai",
+        theme = "catppuccin",
         globalstatus = true,
       },
       sections = {

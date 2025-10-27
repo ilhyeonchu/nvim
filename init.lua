@@ -41,10 +41,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         -- 주석 색 변경
         vim.api.nvim_set_hl(0, "Comment", { fg = "#ffff00", italic = true })
 
-        -- 라인 넘버 변경
-        vim.api.nvim_set_hl(0, "LineNr", { fg = "#a89984", bold = true })
-        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#458588", bold = true })
-        vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3836" })
+        -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#a89984", bold = true })
+        -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#458588", bold = true })
+        -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3836" })
         -- vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
     end,
 })
@@ -54,8 +53,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 -- autocmd 그룹의 clear=true 옵션 덕분에 중복 실행 문제는 없습니다.
 pcall(function()
     vim.api.nvim_set_hl(0, "Comment", { fg = "#ffff00", italic = true })
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#a89984", bold = true })
-    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#458588", bold = true })
-    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3836" })
+    -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#a89984", bold = true })
+    -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#458588", bold = true })
+    -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3836" })
     -- vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
 end)
