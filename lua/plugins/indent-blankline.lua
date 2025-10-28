@@ -18,9 +18,9 @@ local rainbow = {
     -- 플러그인 옵션
     opts = {
       indent = {
-        char      = "│",
-        tab_char  = " ",
-        highlight = rainbow,    -- 들여쓰기 선 색
+        char      = "┋",        -- 굵은 들여쓰기 선
+        tab_char  = "┋",
+        highlight = rainbow,
       },
       scope = {
         enabled         = true,
@@ -28,7 +28,7 @@ local rainbow = {
         show_end        = true,
         show_exact_scope = true,
         highlight       = { "IblScope" },
-        char            = "│",
+        char            = "┋",
       },
       exclude = {
         filetypes = {
