@@ -9,18 +9,19 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         -- 기존
-        "lua_ls", "clangd", "pyright", "texlab", "ocamllsp", "jsonls",
+        "lua_ls", "clangd", "pyright", "texlab", --"ocamllsp",
+        "jsonls",
         -- 추가: Java / Go / C# / Web
-        "jdtls",       -- Java
-        "gopls",       -- Go
-        "omnisharp",   -- C#
-        "vtsls",       -- JavaScript / TypeScript (recommended)
-        "html",        -- HTML
-        "cssls",       -- CSS
+        "jdtls",                 -- Java
+        "gopls",                 -- Go
+        "omnisharp",             -- C#
+        "vtsls",                 -- JavaScript / TypeScript (recommended)
+        "html",                  -- HTML
+        "cssls",                 -- CSS
         "emmet_language_server", -- Emmet
-        "eslint",      -- ESLint (JS/TS)
-        "autotools_ls", -- Makefile/Autotools
-        "cmake",      -- CMake
+        "eslint",                -- ESLint (JS/TS)
+        "autotools_ls",          -- Makefile/Autotools
+        "cmake",                 -- CMake
         -- Docker
         "dockerls",
         "docker_compose_language_service",
