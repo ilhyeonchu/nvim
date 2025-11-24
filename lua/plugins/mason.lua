@@ -9,7 +9,7 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         -- 기존
-        "lua_ls", "clangd", "pyright", "texlab", --"ocamllsp",
+        "lua_ls", "clangd", "pyright", "pyrefly", "texlab", --"ocamllsp",
         "jsonls",
         -- 추가: Java / Go / C# / Web
         "jdtls",                 -- Java
