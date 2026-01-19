@@ -32,7 +32,7 @@ vim.keymap.set("n", "<leader>af", function()
 		vim.cmd("AerialOpen")
 	end
 end, { desc = "Aerial: Open & focus" })
-vim.keymap.set("n", "<leader>as", "<cmd>Telescope aerial<cr>", { desc = "Aerial: Search symbols" })
+vim.keymap.set("n", "<leader>as", function() require('aerial').fzf() end, { desc = "Aerial: Search symbols (fzf)" })
 
 -- 플러그인 초기화는 lua/plugins/harpoon.lua에서 수행
 local harpoon = require("harpoon")
@@ -103,22 +103,26 @@ end, { desc = "마지막 버퍼로 이동" })
 vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-\\>", ":ToggleTerm<CR>", { noremap = true, silent = true })
 
--- 플러그인 초기화는 lua/plugins/bookmarks.lua에서 수행
-local bm = require("bookmarks")
+-- ===== vim-bookmarks & fzf-lua =====
+vim.keymap.set("n", "mm", "<cmd>BookmarkToggle<cr>", { desc = "Bookmark: 토글" })
+vim.keymap.set("n", "mi", "<cmd>BookmarkAnnotate<cr>", { desc = "Bookmark: 주석 추가/편집" })
+vim.keymap.set("n", "mc", "<cmd>BookmarkClear<cr>", { desc = "Bookmark: 모두 지우기" })
+vim.keymap.set("n", "mn", "<cmd>BookmarkNext<cr>", { desc = "Bookmark: 다음 북마크" })
+vim.keymap.set("n", "mp", "<cmd>BookmarkPrev<cr>", { desc = "Bookmark: 이전 북마크" })
+-- BookmarkShowAll로 Quickfix에 채운 뒤 fzf-lua quickfix 호출
+vim.keymap.set("n", "ml", "<cmd>BookmarkShowAll<cr><cmd>FzfLua quickfix<cr>", { desc = "Bookmark: 목록 보기(fzf)" })
 
-vim.keymap.set("n", "mm", bm.bookmark_toggle, { desc = "Bookmark: 토글" })
-vim.keymap.set("n", "mi", bm.bookmark_ann, { desc = "Bookmark: 주석 추가/편집" })
-vim.keymap.set("n", "mc", bm.bookmark_clean, { desc = "Bookmark: 모두 지우기" })
-vim.keymap.set("n", "mn", bm.bookmark_next, { desc = "Bookmark: 다음 북마크" })
-vim.keymap.set("n", "mp", bm.bookmark_prev, { desc = "Bookmark: 이전 북마크" })
-vim.keymap.set("n", "ml", bm.bookmark_list, { desc = "Bookmark: 목록 보기" })
+-- ===== fzf-lua =====
+local function fzf_lua(cmd)
+    return function()
+        require('fzf-lua')[cmd]()
+    end
+end
 
--- ===== telescope =====
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>fs", builtin.find_files, { desc = "Telescope: 파일 찾기" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope: 텍스트 검색" })
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope: 버퍼 목록" })
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope: 도움말 태그" })
+vim.keymap.set("n", "<leader>fs", fzf_lua("files"), { desc = "FzfLua: 파일 찾기" })
+vim.keymap.set("n", "<leader>fg", fzf_lua("live_grep"), { desc = "FzfLua: 텍스트 검색" })
+vim.keymap.set("n", "<leader>fb", fzf_lua("buffers"), { desc = "FzfLua: 버퍼 목록" })
+vim.keymap.set("n", "<leader>fh", fzf_lua("help_tags"), { desc = "FzfLua: 도움말 태그" })
 
 -- ===== nvim-dap =====
 local function dap_call(method)
