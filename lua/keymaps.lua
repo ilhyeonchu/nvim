@@ -20,10 +20,16 @@ vim.keymap.set(
 	{ noremap = true, silent = true, desc = "Neotree: 포커스(오른쪽)" }
 )
 
+-- ===== oil =====
+vim.keymap.set("n", "<leader>fd", "<cmd>Oil<cr>", { desc = "Oil: 현재 파일 디렉터리 열기" })
+
+-- ===== symbols-outline =====
+vim.keymap.set("n", "<leader>o", "<cmd>SymbolsOutline<cr>", { desc = "심볼 아웃라인 열기" })
+
 -- ===== aerial =====
-vim.keymap.set("n", "<leader>ao", "<cmd>AerialToggle<cr>", { desc = "Aerial: Toggle outline" })
-vim.keymap.set("n", "<leader>aj", "<cmd>AerialNext<cr>", { desc = "Aerial: Next symbol" })
-vim.keymap.set("n", "<leader>ak", "<cmd>AerialPrev<cr>", { desc = "Aerial: Prev symbol" })
+vim.keymap.set("n", "<leader>ao", "<cmd>AerialToggle<cr>", { desc = "Aerial: 아웃라인 토글" })
+vim.keymap.set("n", "<leader>aj", "<cmd>AerialNext<cr>", { desc = "Aerial: 다음 심볼" })
+vim.keymap.set("n", "<leader>ak", "<cmd>AerialPrev<cr>", { desc = "Aerial: 이전 심볼" })
 vim.keymap.set("n", "<leader>af", function()
 	local ok, aerial = pcall(require, "aerial")
 	if ok then
@@ -31,8 +37,8 @@ vim.keymap.set("n", "<leader>af", function()
 	else
 		vim.cmd("AerialOpen")
 	end
-end, { desc = "Aerial: Open & focus" })
-vim.keymap.set("n", "<leader>as", function() require('aerial').fzf() end, { desc = "Aerial: Search symbols (fzf)" })
+end, { desc = "Aerial: 열기 및 포커스" })
+vim.keymap.set("n", "<leader>as", function() require('aerial').fzf() end, { desc = "Aerial: 심볼 검색(fzf)" })
 
 -- 플러그인 초기화는 lua/plugins/harpoon.lua에서 수행
 local harpoon = require("harpoon")
@@ -98,6 +104,18 @@ end
 vim.keymap.set("n", "<A-0>", function()
 	goto_buffer(0)
 end, { desc = "마지막 버퍼로 이동" })
+vim.keymap.set("n", "<A-,>", "<Cmd>BufferPrevious<CR>", { desc = "Barbar: 이전 버퍼" })
+vim.keymap.set("n", "<A-.>", "<Cmd>BufferNext<CR>", { desc = "Barbar: 다음 버퍼" })
+vim.keymap.set("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", { desc = "Barbar: 버퍼 왼쪽 이동" })
+vim.keymap.set("n", "<A->>", "<Cmd>BufferMoveNext<CR>", { desc = "Barbar: 버퍼 오른쪽 이동" })
+vim.keymap.set("n", "<A-p>", "<Cmd>BufferPin<CR>", { desc = "Barbar: 버퍼 고정" })
+vim.keymap.set("n", "<A-c>", "<Cmd>BufferClose<CR>", { desc = "Barbar: 버퍼 닫기" })
+vim.keymap.set("n", "<C-p>", "<Cmd>BufferPick<CR>", { desc = "Barbar: 버퍼 선택" })
+vim.keymap.set("n", "<leader>bb", "<Cmd>BufferOrderByBufferNumber<CR>", { desc = "Barbar: 번호순 정렬" })
+vim.keymap.set("n", "<leader>bn", "<Cmd>BufferOrderByName<CR>", { desc = "Barbar: 이름순 정렬" })
+vim.keymap.set("n", "<leader>bd", "<Cmd>BufferOrderByDirectory<CR>", { desc = "Barbar: 디렉터리순 정렬" })
+vim.keymap.set("n", "<leader>bl", "<Cmd>BufferOrderByLanguage<CR>", { desc = "Barbar: 언어순 정렬" })
+vim.keymap.set("n", "<leader>bw", "<Cmd>BufferOrderByWindowNumber<CR>", { desc = "Barbar: 윈도우순 정렬" })
 
 -- ===== toggleterm =====
 vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
@@ -123,6 +141,46 @@ vim.keymap.set("n", "<leader>fs", fzf_lua("files"), { desc = "FzfLua: 파일 찾
 vim.keymap.set("n", "<leader>fg", fzf_lua("live_grep"), { desc = "FzfLua: 텍스트 검색" })
 vim.keymap.set("n", "<leader>fb", fzf_lua("buffers"), { desc = "FzfLua: 버퍼 목록" })
 vim.keymap.set("n", "<leader>fh", fzf_lua("help_tags"), { desc = "FzfLua: 도움말 태그" })
+
+-- ===== neogen =====
+local function neogen_generate(opts)
+	return function()
+		local ok, neogen = pcall(require, "neogen")
+		if not ok then
+			vim.notify("Neogen을 불러오지 못했습니다.", vim.log.levels.WARN)
+			return
+		end
+		neogen.generate(opts or {})
+	end
+end
+
+vim.keymap.set("n", "<leader>ng", "<cmd>Neogen<cr>", { desc = "Neogen: 주석 생성(기본)" })
+vim.keymap.set("n", "<leader>nd", neogen_generate({
+	annotation_convention = {
+		c = "doxygen",
+		cpp = "doxygen",
+		python = "google_docstrings",
+	},
+}), { desc = "Neogen: Doxygen 엄격형 프리셋" })
+vim.keymap.set("n", "<leader>nc", neogen_generate({
+	annotation_convention = {
+		cpp = "google_concise",
+		python = "google_docstrings",
+	},
+}), { desc = "Neogen: Google 간결형 프리셋" })
+
+-- ===== trouble =====
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble: 진단 토글(버퍼)" })
+vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Trouble: 진단 토글(현재 버퍼만)" })
+vim.keymap.set(
+	"n",
+	"<leader>xw",
+	"<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.WARN<cr>",
+	{ desc = "Trouble: 경고" }
+)
+vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "Trouble: 위치 목록" })
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Trouble: 퀵픽스 목록" })
+vim.keymap.set("n", "gR", "<cmd>Trouble lsp toggle focus=true win.position=right<cr>", { desc = "Trouble: LSP 참조" })
 
 -- ===== nvim-dap =====
 local function dap_call(method)
@@ -186,6 +244,17 @@ vim.keymap.set("n", "<leader>du", function()
 end, { desc = "DAP: UI 토글" })
 
 -- ===== Git =====
+vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<CR>", { desc = "Git: 다음 hunk" })
+vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<CR>", { desc = "Git: 이전 hunk" })
+vim.keymap.set({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", { desc = "Git: hunk 스테이지" })
+vim.keymap.set({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "Git: hunk 리셋" })
+vim.keymap.set("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>", { desc = "Git: 버퍼 스테이지" })
+vim.keymap.set("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>", { desc = "Git: hunk 스테이지 되돌리기" })
+vim.keymap.set("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Git: hunk 미리보기" })
+vim.keymap.set("n", "<leader>hb", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Git: blame 토글" })
+vim.keymap.set("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>", { desc = "Git: 현재 diff 보기" })
+vim.keymap.set("n", "<leader>hD", "<cmd>Gitsigns diffthis ~<CR>", { desc = "Git: 이전 버전과 diff 보기" })
+
 vim.keymap.set("n", "<leader>gg", function()
 	local ok, neogit = pcall(require, "neogit")
 	if ok then

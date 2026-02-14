@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> Primary single-source onboarding doc: `AI_ONBOARDING.md`
+
 ## 개요
 
 이 저장소는 **Lazy.nvim** 기반 Neovim 설정이며, `~/dotfiles/nvim/.config/nvim/` 에 위치한다. 한국어 주석이 전반적으로 사용된다.

@@ -52,9 +52,20 @@ return {
       return false
     end
 
+    local function resolve_lualine_theme()
+      local ok, catppuccin_lualine = pcall(require, "catppuccin.utils.lualine")
+      if ok and type(catppuccin_lualine) == "function" then
+        local ok_theme, theme = pcall(catppuccin_lualine)
+        if ok_theme and type(theme) == "table" then
+          return theme
+        end
+      end
+      return "auto"
+    end
+
     require("lualine").setup({
       options = {
-        theme = "catppuccin",
+        theme = resolve_lualine_theme(),
         globalstatus = true,
       },
       sections = {

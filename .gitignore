@@ -1,2 +1,7 @@
 img-clip.lua
 lazy-lock.json
+
+# IWE (local only)
+lua/plugins/iwe.lua
+.iwe/
+**/.iwe/

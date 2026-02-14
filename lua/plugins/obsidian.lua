@@ -23,26 +23,29 @@ return {
   version = "*",
   ft = "markdown",
   dependencies = { "nvim-lua/plenary.nvim" },
+  cmd = {
+    "ObsidianNew",
+    "ObsidianQuickSwitch",
+    "ObsidianSearch",
+    "ObsidianToday",
+    "ObsidianBacklinks",
+    "ObsidianTemplate",
+    "ObsidianWeekly",
+    "ObsidianMonthly",
+    "ObsidianQuarterly",
+    "ObsidianYearly",
+  },
   keys = {
-    { "<leader>zn", "<cmd>ObsidianNew<cr>",         desc = "Obsidian: 새 노트" },
+    { "<leader>zn", "<cmd>ObsidianNew<cr>", desc = "Obsidian: 새 노트" },
     { "<leader>zo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian: 빠른 전환" },
-    { "<leader>zs", "<cmd>ObsidianSearch<cr>",      desc = "Obsidian: 검색" },
-    { "<leader>zd", "<cmd>ObsidianToday<cr>",       desc = "Obsidian: 데일리 노트" },
-    { "<leader>zw", function()
-      open_periodic_note("11 Weekly", os.date("%Y-W%V"), "weekly")
-    end, desc = "Obsidian: 위클리 노트" },
-    { "<leader>zm", function()
-      open_periodic_note("12 Monthly", os.date("%Y-%m"), "monthly")
-    end, desc = "Obsidian: 먼슬리 노트" },
-    { "<leader>zq", function()
-      local q = math.ceil(tonumber(os.date("%m")) / 3)
-      open_periodic_note("13 Quarterly", os.date("%Y") .. "-Q" .. q, "quarterly")
-    end, desc = "Obsidian: 분기 노트" },
-    { "<leader>zy", function()
-      open_periodic_note("14 Yearly", os.date("%Y"), "yearly")
-    end, desc = "Obsidian: 연간 노트" },
-    { "<leader>zb", "<cmd>ObsidianBacklinks<cr>",   desc = "Obsidian: 백링크" },
-    { "<leader>zt", "<cmd>ObsidianTemplate<cr>",    desc = "Obsidian: 템플릿 삽입" },
+    { "<leader>zs", "<cmd>ObsidianSearch<cr>", desc = "Obsidian: 검색" },
+    { "<leader>zd", "<cmd>ObsidianToday<cr>", desc = "Obsidian: 데일리 노트" },
+    { "<leader>zw", "<cmd>ObsidianWeekly<cr>", desc = "Obsidian: 위클리 노트" },
+    { "<leader>zm", "<cmd>ObsidianMonthly<cr>", desc = "Obsidian: 먼슬리 노트" },
+    { "<leader>zq", "<cmd>ObsidianQuarterly<cr>", desc = "Obsidian: 분기 노트" },
+    { "<leader>zy", "<cmd>ObsidianYearly<cr>", desc = "Obsidian: 연간 노트" },
+    { "<leader>zb", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian: 백링크" },
+    { "<leader>zt", "<cmd>ObsidianTemplate<cr>", desc = "Obsidian: 템플릿 삽입" },
   },
   config = function()
     if not fs.fs_stat(vault) then
@@ -92,5 +95,26 @@ return {
         return out
       end,
     })
+
+    local function create_user_command(name, callback, desc)
+      if vim.fn.exists(":" .. name) == 2 then
+        return
+      end
+      vim.api.nvim_create_user_command(name, callback, { desc = desc })
+    end
+
+    create_user_command("ObsidianWeekly", function()
+      open_periodic_note("11 Weekly", os.date("%Y-W%V"), "weekly")
+    end, "Obsidian: 위클리 노트")
+    create_user_command("ObsidianMonthly", function()
+      open_periodic_note("12 Monthly", os.date("%Y-%m"), "monthly")
+    end, "Obsidian: 먼슬리 노트")
+    create_user_command("ObsidianQuarterly", function()
+      local q = math.ceil(tonumber(os.date("%m")) / 3)
+      open_periodic_note("13 Quarterly", os.date("%Y") .. "-Q" .. q, "quarterly")
+    end, "Obsidian: 분기 노트")
+    create_user_command("ObsidianYearly", function()
+      open_periodic_note("14 Yearly", os.date("%Y"), "yearly")
+    end, "Obsidian: 연간 노트")
   end,
 }
